@@ -1,0 +1,84 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - inform
+  - show_slots
+
+entities:
+  - authenticated
+  - time_of_day
+
+slots:
+  authenticated:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: authenticated
+    - type: from_intent
+      value: true
+      intent: affirm
+    - type: from_intent
+      value: false
+      intent: deny
+  time_of_day:
+    type: categorical
+    values:
+        - morning
+        - afternoon
+        - evening
+        - unknown
+    influence_conversation: false
+    initial_value: unknown
+    mappings:
+    - type: from_entity
+      entity: time_of_day
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+    - condition:
+        - type: slot
+          name: authenticated
+          value: "true"
+      text: "Bye friend,  {time_of_day}, {authenticated}"
+    - condition:
+        - type: slot
+          name: authenticated
+          value: "false"
+      text: "Bye stranger,  {time_of_day}, {authenticated}"
+    - condition:
+        - type: slot
+          name: authenticated
+          value: "unknown"
+      text: "Bye Mr. Unknown {time_of_day}, {authenticated}"
+    - text: "Bye {time_of_day}, {authenticated}"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_inform:
+  - text: "Slot values, authenticated: {authenticated}, time_of_day: {time_of_day}"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

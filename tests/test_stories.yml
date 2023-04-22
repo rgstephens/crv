@@ -1,0 +1,36 @@
+stories:
+- story: goodbye
+  steps:
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: bot_challenge
+  steps:
+  - user: |
+      are you a bot
+    intent: bot_challenge
+  - action: utter_iamabot
+
+- story: authenticated true
+  steps:
+  - user: |
+      authenticated [true]{"entity": "authenticated"}
+    intent: inform
+  - action: utter_inform
+  - user: |
+      goodbye
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: authenticated false
+  steps:
+  - user: |
+      authenticated [false]{"entity": "authenticated"}
+    intent: inform
+  - action: utter_inform
+  - user: |
+      goodbye
+  - intent: goodbye
+  - action: utter_goodbye

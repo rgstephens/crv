@@ -1,0 +1,24 @@
+test_cases:
+ - test_case: "goodbye"
+   steps:
+    - user: "goodbye"
+    - utter: utter_goodbye
+
+ - test_case: "goodbye bot"
+   steps:
+    - user: "goodbye"
+    - bot: "Bye unknown, None"
+
+ - test_case: "authenticated true"
+   steps:
+    - user: "authenticated true"
+    - bot: "Slot values, authenticated: true, time_of_day: unknown"
+    - user: "goodbye"
+    - bot: "Bye friend,  unknown, true"
+
+ - test_case: "authenticated false"
+   steps:
+    - user: "authenticated false"
+    - bot: "Slot values, authenticated: false, time_of_day: unknown"
+    - user: "goodbye"
+    - bot: "Bye stranger,  unknown, false"

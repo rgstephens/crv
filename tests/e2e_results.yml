@@ -1,0 +1,33 @@
+test_results:
+
+- name: "goodbye"
+  pass_status: true
+  expected_steps:
+  - user: "goodbye"
+  - utter: utter_goodbye
+  difference: []
+
+- name: "goodbye bot"
+  pass_status: true
+  expected_steps:
+  - user: "goodbye"
+  - bot: "Bye unknown, None"
+  difference: []
+
+- name: "authenticated true"
+  pass_status: true
+  expected_steps:
+  - user: "authenticated true"
+  - bot: "Slot values, authenticated: true, time_of_day: unknown"
+  - user: "goodbye"
+  - bot: "Bye friend,  unknown, true"
+  difference: []
+
+- name: "authenticated false"
+  pass_status: true
+  expected_steps:
+  - user: "authenticated false"
+  - bot: "Slot values, authenticated: false, time_of_day: unknown"
+  - user: "goodbye"
+  - bot: "Bye stranger,  unknown, false"
+  difference: []
