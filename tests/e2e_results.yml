@@ -31,3 +31,11 @@ test_results:
   - user: "goodbye"
   - bot: "Bye stranger,  unknown, false"
   difference: []
+
+- name: "authenticated false with fixtures"
+  pass_status: true
+  expected_steps:
+  - user: "goodbye"
+  - bot: "Bye unknown, False"
+    #  - bot: "Bye stranger,  unknown, false"
+  difference: []
